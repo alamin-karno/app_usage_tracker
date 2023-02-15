@@ -58,9 +58,9 @@ The `AppUsageTracker` class, which has a static method `isAppUsedEnough` that re
 
 ## Screenshot (GIF)
 
-| App Uaages Tracker (GIF) |
-| :---: |
-| <img src="#"> |
+|             App Usages Tracker (FALSE)              |              App Usages Tracker (TRUE)              |
+|:---------------------------------------------------:|:---------------------------------------------------:|
+| <img src="https://github.com/alamin-karno/app_usage_tracker/blob/main/example/screenshots/app_usage_tracker_false.png"> | <img src="https://github.com/alamin-karno/app_usage_tracker/blob/main/example/screenshots/app_usage_tracker_true.png"> |
 
 ## Additional information
 
