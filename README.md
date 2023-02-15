@@ -54,7 +54,7 @@ if (isUsedEnough) {
 }
 ```
 
-Here is the full code for the AppUsageTracker class:
+Here is the full code for the `AppUsageTracker` class:
 
 ```dart
 import 'package:shared_preferences/shared_preferences.dart';
