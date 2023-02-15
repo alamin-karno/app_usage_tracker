@@ -1,3 +1,5 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Check minimum day app usage
+* Check minimum app lunches
+* Support for multiple platforms
