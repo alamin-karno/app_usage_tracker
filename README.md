@@ -54,59 +54,7 @@ if (isUsedEnough) {
 }
 ```
 
-Here is the full code for the `AppUsageTracker` class:
-
-```dart
-import 'package:shared_preferences/shared_preferences.dart';
-
-class AppUsageTracker {
-  static const String _kFirstOpen = 'first_open';
-  static const String _kOpenedCount = 'opened_count';
-
-  static Future<bool> isAppUsedEnough({
-    required minDayUsed,
-    required minLaunches,
-    bool resetTracker = true,
-  }) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    // Check if this is the first time the app is opened
-    final firstOpenTimestamp = prefs.getInt(_kFirstOpen);
-    if (firstOpenTimestamp == null) {
-      prefs.setInt(_kFirstOpen, DateTime.now().millisecondsSinceEpoch);
-      prefs.setInt(_kOpenedCount, 1);
-      return false;
-    }
-
-    // Check if the app has been used for at least minDayUsed days
-    final now = DateTime.now();
-    final firstOpenDate = DateTime.fromMillisecondsSinceEpoch(firstOpenTimestamp);
-    final diff = now.difference(firstOpenDate);
-    final daysUsed = diff.inDays + 1; // add 1 to include the first day
-    if (daysUsed < minDayUsed) {
-      return false;
-    }
-
-    // Check if the app has been opened at least minLaunches times
-    final openedCount = prefs.getInt(_kOpenedCount) ?? 0;
-    if (openedCount < minLaunches) {
-      prefs.setInt(_kOpenedCount, openedCount + 1);
-      return false;
-    }
-
-    // Reset the first open timestamp and opened count
-    if (resetTracker) {
-      prefs.setInt(_kFirstOpen, DateTime.now().millisecondsSinceEpoch);
-      prefs.setInt(_kOpenedCount, 1);
-    }
-
-    // The app has been used enough
-    return true;
-  }
-}
-```
-
-This code defines the `AppUsageTracker` class, which has a static method `isAppUsedEnough` that returns a boolean indicating whether the app has been used enough. It uses the shared_preferences package to store the app's usage information on the device. When the `isAppUsedEnough` method is called, it checks the stored usage information to determine if the app has been used for at least `minDayUsed` days and opened at least `minLaunches` times. If the app has not been used enough, the method returns false. If the app has been used enough, the method resets the usage information and returns true.
+The `AppUsageTracker` class, which has a static method `isAppUsedEnough` that returns a boolean indicating whether the app has been used enough. It uses the shared_preferences package to store the app's usage information on the device. When the `isAppUsedEnough` method is called, it checks the stored usage information to determine if the app has been used for at least `minDayUsed` days and opened at least `minLaunches` times. If the app has not been used enough, the method returns false. If the app has been used enough, the method resets the usage information and returns true.
 
 ## Screenshot (GIF)
 
