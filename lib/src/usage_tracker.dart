@@ -17,6 +17,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// [AppUsageTracker] The App Usage Tracker is a Dart class that provides
@@ -70,6 +71,7 @@ class AppUsageTracker {
     final diff = now.difference(firstOpenDate);
     final daysUsed = diff.inDays + 1; // add 1 to include the first day
     if (daysUsed < minDayUsed) {
+      debugPrint('[AppUsageTracker] TOTAL DAY USED: $daysUsed');
       return false;
     }
 
@@ -77,15 +79,19 @@ class AppUsageTracker {
     final openedCount = prefs.getInt(_kOpenedCount) ?? 0;
     if (openedCount < minLaunches) {
       prefs.setInt(_kOpenedCount, openedCount + 1);
+      debugPrint('[AppUsageTracker] TOTAL APP LUNCHED: $openedCount');
       return false;
     }
 
     // Reset the first open timestamp and opened count
     if (resetTracker) {
+      debugPrint('[AppUsageTracker] TRACKER RESET');
       prefs.setInt(_kFirstOpen, DateTime.now().millisecondsSinceEpoch);
       prefs.setInt(_kOpenedCount, 1);
     }
 
+    debugPrint('[AppUsageTracker] TOTAL DAY USED: $daysUsed');
+    debugPrint('[AppUsageTracker] TOTAL APP LUNCHED: $openedCount');
     // The app has been used enough
     return true;
   }

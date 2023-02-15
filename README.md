@@ -43,10 +43,10 @@ import 'package:app_usage_tracker/app_usage_tracker.dart';
 
 ```dart
 bool isUsedEnough = await AppUsageTracker.isAppUsedEnough(
-    minDayUsed: 15, // here you can user your own minimum day used
-    minLunches: 10, // here you can use your own minimum lunches
-    resetTacker: false, // reset the tracker if the app has been used for at least minDays = 15 days and opened at least minLunches = 10 times. By default the tracker is reset.
-);
+      minDayUsed: 15, // here you can user your own minimum day used
+      minLaunches: 10, // here you can use your own minimum lunches
+      resetTracker: true// reset the tracker if the app has been used for at least minDays = 15 days and opened at least minLunches = 10 times. By default the tracker is reset.
+  );
 if (isUsedEnough) {
   // The app has been used enough
 } else {
